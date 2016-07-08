@@ -1,0 +1,27 @@
+{
+  "env": {
+    "node": true,
+    "browser": true,
+    "es6": true
+  }, // http://eslint.org/docs/user-guide/configuring#specifying-environments
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended"
+  ], // http://eslint.org/docs/user-guide/configuring#extending-configuration-files
+  "parser": "babel-eslint",          // https://github.com/babel/babel-eslint
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": [
+    "react",                         // https://github.com/yannickcr/eslint-plugin-react
+    "jsx-a11y"                       // https://github.com/evcohen/eslint-plugin-jsx-a11y
+  ],
+  "rules": {
+    "comma-dangle": [2, "always-multiline"]
+  }
+}

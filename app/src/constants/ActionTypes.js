@@ -1,0 +1,3 @@
+export const ADD_FEEDING = 'ADD_FEEDING';
+export const DELETE_FEEDING = 'DELETE_FEEDING';
+export const EDIT_FEEDING = 'EDIT_FEEDING';
