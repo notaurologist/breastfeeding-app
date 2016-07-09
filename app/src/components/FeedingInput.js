@@ -1,21 +1,34 @@
 import React from 'react';
 
+import Form from '../common/Form';
+import Input from '../common/Input';
+import Button from '../common/Button';
+
+import {addFeeding} from '../../actions';
+
+const handleSubmit = (evt) => {
+  evt.preventDefault();
+  addFeeding();
+};
+
 const FeedingInput = () => (
-	<form>
+	<Form
+		action="/route/add"
+		onSubmit={ handleSubmit }>
 		<label htmlFor="left_side">Left
-			<input type="radio" id="left_side" name="side" value="left" />
+			<Input type="radio" id="left_side" name="side" value="left" />
 		</label>
 		<label htmlFor="right_side">Right
-			<input type="radio" id="right_side" name="side" value="right" />
+			<Input type="radio" id="right_side" name="side" value="right" />
 		</label>
 		<label htmlFor="wet">Wet
-			<input type="number" id="wet" name="wet" value="0" />
+			<Input type="number" id="wet" name="wet" value="0" />
 		</label>
 		<label htmlFor="soiled">Soiled
-			<input type="number" id="soiled" name="soiled" value="0" />
+			<Input type="number" id="soiled" name="soiled" value="0" />
 		</label>
-		<button>Start/Stop</button>
-	</form>
+		<Button>Start/Stop</Button>
+	</Form>
 );
 
 export default FeedingInput;
