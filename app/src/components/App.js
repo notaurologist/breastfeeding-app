@@ -6,17 +6,10 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Timer from './Timer';
-// import FeedingInput from './FeedingInput';
+import FeedingInput from './FeedingInput';
 
 const App = () => (
-  <MuiThemeProvider>
-    <Timer
-      initialMinutes={2}
-      initialSeconds={0} />
-    {/*<FeedingInput />*/}
-  </MuiThemeProvider>
+  <FeedingInput />
 );
 
 export default App;

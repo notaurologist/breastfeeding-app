@@ -10,17 +10,12 @@ function feeding(state, action) {
       return {
         id: v4(),
 				start: action.start,
-				side: action.side,
-				wet: action.wet,
-				soiled: action.soiled,
       };
     case EDIT_FEEDING:
       return Object.assign({}, state, {
         start: action.start,
 				duration: action.duration,
 				side: action.side,
-				wet: action.wet,
-				soiled: action.soiled,
       });
 		default:
 			return state;
