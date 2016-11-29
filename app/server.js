@@ -10,8 +10,8 @@ const port = 3000;
 
 const compiler = webpack(config);
 app.use(webpackDevMiddleware(compiler, {
-	noInfo: true,
-	publicPath: config.output.publicPath,
+  noInfo: true,
+  publicPath: config.output.publicPath,
 }));
 app.use(webpackHotMiddleware(compiler));
 
@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, (error) => {
-	/* eslint-disable */
+  /* eslint-disable */
   if (error) {
     console.error(error);
   } else {

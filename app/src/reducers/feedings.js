@@ -9,16 +9,16 @@ function feeding(state, action) {
     case ADD_FEEDING:
       return {
         id: v4(),
-				start: action.start,
+        start: action.start,
       };
     case EDIT_FEEDING:
       return Object.assign({}, state, {
         start: action.start,
-				duration: action.duration,
-				side: action.side,
+        duration: action.duration,
+        side: action.side,
       });
-		default:
-			return state;
+    default:
+      return state;
   }
 }
 
