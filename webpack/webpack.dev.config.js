@@ -26,15 +26,22 @@ export default baseConfig({
   output: {
     filename: '[name].js',
   },
-  cssLoaders: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]!postcss-loader'),
+  cssLoaders: ExtractTextPlugin.extract({
+    fallbackLoader: 'style-loader',
+    loader: [
+      'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]',
+      'postcss-loader',
+    ],
+  }),
   postcssPlugins: [
     require('postcss-cssnext'),
-    require('postcss-remove-root')
+    require('postcss-remove-root'),
   ],
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    new ExtractTextPlugin('[name].css', {
+    new ExtractTextPlugin({
+      filename: '[name].css',
       allChunks: true,
     }),
     new HtmlWebpackPlugin({

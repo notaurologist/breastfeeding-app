@@ -13,14 +13,14 @@ export default (options) => ({
     publicPath: '/',
   }, options.output),
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'babel',
-      query: options.babelQuery,
+      loader: 'babel-loader',
+      options: options.babelQuery,
     }, {
       test: /\.json$/,
-      loader: 'json',
+      loader: 'json-loader',
     }, {
       test: /\.css$/,
       exclude: /node_modules/,
@@ -33,25 +33,25 @@ export default (options) => ({
       // So, no need for ExtractTextPlugin here.
       test: /\.css$/,
       include: /node_modules/,
-      loaders: ['style', 'css'],
+      loaders: ['style-loader', 'css-loader'],
     }, {
       test: /\.html$/,
-      loader: 'html',
+      loader: 'html-loader',
     }, {
       test: /\.(svg|png|jpg|gif)$/,
-      loader: 'url?limit=4096',
+      loader: 'url-loader?limit=4096',
     }, {
       test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'file?name=fonts/[name].[hash].[ext]&mimetype=application/font-woff',
+      loader: 'file-loader?name=fonts/[name].[hash].[ext]&mimetype=application/font-woff',
     }, {
       test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'file?name=fonts/[name].[hash].[ext]&mimetype=application/font-woff',
+      loader: 'file-loader?name=fonts/[name].[hash].[ext]&mimetype=application/font-woff',
     }, {
       test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'file?name=fonts/[name].[hash].[ext]&mimetype=application/octet-stream',
+      loader: 'file-loader?name=fonts/[name].[hash].[ext]&mimetype=application/octet-stream',
     }, {
       test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'file?name=fonts/[name].[hash].[ext]',
+      loader: 'file-loader?name=fonts/[name].[hash].[ext]',
     }],
   },
   plugins: options.plugins.concat([
@@ -68,11 +68,14 @@ export default (options) => ({
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },
     }),
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: () => options.postcssPlugins,
+      },
+    }),
     new CopyWebpackPlugin([{
       from: 'node_modules/sanitize.css',
     }]),
   ]),
-  postcss: () => options.postcssPlugins,
   stats: false,
-  progress: true,
 });

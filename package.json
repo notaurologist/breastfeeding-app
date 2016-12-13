@@ -17,9 +17,9 @@
   "main": "app/main.js",
   "scripts": {
     "prebuild": "rimraf build",
-    "build": "webpack",
+    "build": "babel-node ./node_modules/webpack/bin/webpack.js",
     "build:devel": "NODE_ENV=development npm run build -- --config ./webpack/webpack.dev.config.js",
-    "build:production": "NODE_ENV=production npm run webpack -- --config ./webpack/webpack.prod.config.js",
+    "build:production": "NODE_ENV=production npm run build -- --config ./webpack/webpack.prod.config.js",
     "esformat": "esformatter --config .esformatterrc -i 'app/{src,test}/**/*.js'",
     "lint": "npm run lint:js && npm run lint:css",
     "lint:js": "eslint --fix app/{src,test}/*",
@@ -35,12 +35,12 @@
   "dependencies": {
     "babel-polyfill": "^6.9.1",
     "material-ui": "^0.16.4",
-    "node-uuid": "^1.4.7",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-redux": "^4.4.5",
     "react-tap-event-plugin": "^2.0.1",
-    "redux": "^3.5.2"
+    "redux": "^3.5.2",
+    "uuid": "^3.0.1"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
@@ -50,7 +50,7 @@
     "babel-plugin-transform-react-constant-elements": "^6.8.0",
     "babel-plugin-transform-react-inline-elements": "^6.8.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.2.7",
-    "babel-preset-env": "0.0.9",
+    "babel-preset-env": "^1.0.2",
     "babel-preset-react": "^6.5.0",
     "babel-preset-react-hmre": "^1.1.1",
     "copy-webpack-plugin": "^4.0.1",
@@ -63,7 +63,7 @@
     "eslint-plugin-jsx-a11y": "^3.0.1",
     "eslint-plugin-react": "^6.7.1",
     "express": "^4.13.4",
-    "extract-text-webpack-plugin": "^1.0.1",
+    "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "faucet": "0.0.1",
     "file-loader": "^0.9.0",
     "html-loader": "^0.4.3",
@@ -82,7 +82,7 @@
     "stylelint-config-standard": "^15.0.0",
     "tape": "^4.5.1",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.1",
+    "webpack": "^2.1.0-beta.28",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.10.0"
   }

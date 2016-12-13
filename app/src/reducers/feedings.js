@@ -1,5 +1,5 @@
 import { ADD_FEEDING, DELETE_FEEDING, EDIT_FEEDING } from '../constants/ActionTypes';
-import {v4} from 'node-uuid';
+import {v4} from 'uuid';
 
 let initialById = {};
 let initialListedIds = [];
