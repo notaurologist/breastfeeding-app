@@ -9,10 +9,8 @@ export default class Timer extends Component {
 
     this.state = {
       start: 0,
-      minutes: 0,
       seconds: 0,
       transition: 'initial',
-      total: '0:00',
     };
 
     this.toggleTimer = this.toggleTimer.bind(this);
@@ -27,35 +25,25 @@ export default class Timer extends Component {
     evt.preventDefault();
     if (!this.timer) {
       this.setState({
-        start: Date.now(),
+        start: performance.now(),
       });
-      this.timer = setTimeout(this.progress, 1000);
+      this.timer = setTimeout(this.progress, 333);
     } else {
       clearTimeout(this.timer);
-      const finalTime = new Date(Date.now() - this.state.start);
-      const seconds = finalTime.getSeconds();
-      this.setState({
-        total: `${finalTime.getMinutes()}:${seconds < 10 ? '0' + seconds : seconds}`,
-      });
+      // const finalTime = new Date(performance.now() - this.state.start);
+      // const seconds = finalTime.getSeconds();
+      // TODO: Do something with the final time
     }
   }
 
   progress() {
-    const seconds = (Date.now() - this.state.start) / 1000;
-    if (seconds > 60) {
-      this.setState({
-        minutes: this.state.minutes + 1,
-        seconds: 0,
-        transition: 'initial',
-      });
-    } else {
-      this.setState({
-        seconds,
-        transition: 'stroke-dashoffset 1s linear',
-      });
-    }
+    const seconds = (performance.now() - this.state.start) / 1000;
+    this.setState({
+      seconds,
+      transition: 'stroke-dashoffset 1s linear',
+    });
 
-    this.timer = setTimeout(this.progress, 1000);
+    this.timer = setTimeout(this.progress, 333);
   }
 
   render() {
@@ -67,7 +55,7 @@ export default class Timer extends Component {
     return (
       <div className={ styles.container }
         onTouchTap={ this.toggleTimer }>
-        <div className={ styles.minutes }>{ this.state.minutes }</div>
+        <div className={ styles.minutes }>{ parseInt(this.state.seconds / 60, 10) }</div>
         <svg className={ styles.seconds }>
           <circle
             className={ styles.track }
@@ -87,7 +75,6 @@ export default class Timer extends Component {
             strokeDasharray={ MAX_OFFSET }
             strokeDashoffset={ MAX_OFFSET }></circle>
         </svg>
-        { this.state.total }
       </div>
       );
   }

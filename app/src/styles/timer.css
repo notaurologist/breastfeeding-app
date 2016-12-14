@@ -1,11 +1,9 @@
 .container {
   align-items: center;
   color: tomato;
-  cursor: default;
+  cursor: pointer;
   display: flex;
-  height: 66vh;
   justify-content: center;
-  position: relative;
 }
 
 .seconds {
@@ -31,13 +29,7 @@
 
 .minutes {
   font-size: 4em;
-  height: 160px;
   left: 50%;
-  line-height: 160px;
-  margin-left: -80px;
-  margin-top: -80px;
   position: absolute;
-  text-align: center;
-  top: 50%;
-  width: 160px;
+  transform: translateX(-50%);
 }
