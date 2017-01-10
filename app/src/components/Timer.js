@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
+import {h, Component} from 'preact';
 import styles from '../styles/timer.css';
 
-const MAX_OFFSET = 565.48;
+const TIMER_RADIUS = 90;
+const MAX_OFFSET = 2 * Math.PI * TIMER_RADIUS;
 
 export default class Timer extends Component {
   constructor(props) {
@@ -10,7 +11,6 @@ export default class Timer extends Component {
     this.state = {
       start: 0,
       seconds: 0,
-      transition: 'initial',
     };
 
     this.toggleTimer = this.toggleTimer.bind(this);
@@ -18,62 +18,57 @@ export default class Timer extends Component {
   }
 
   componentWillUnmount() {
-    clearTimeout(this.timer);
+    window.cancelAnimationFrame(this.requestId);
   }
 
   toggleTimer(evt) {
     evt.preventDefault();
-    if (!this.timer) {
+    if (!this.requestId) {
       this.setState({
         start: performance.now(),
       });
-      this.timer = setTimeout(this.progress, 333);
+      this.requestId = window.requestAnimationFrame(this.progress);
     } else {
-      clearTimeout(this.timer);
+      window.cancelAnimationFrame(this.requestId);
       // const finalTime = new Date(performance.now() - this.state.start);
       // const seconds = finalTime.getSeconds();
       // TODO: Do something with the final time
     }
   }
 
-  progress() {
-    const seconds = (performance.now() - this.state.start) / 1000;
+  progress(ms) {
+    const seconds = (ms - this.state.start) / 1000;
     this.setState({
       seconds,
-      transition: 'stroke-dashoffset 1s linear',
     });
 
-    this.timer = setTimeout(this.progress, 333);
+    this.requestId = window.requestAnimationFrame(this.progress);
   }
 
   render() {
     const inlineStyles = {
-      strokeDashoffset: MAX_OFFSET - (this.state.seconds / 60) * Math.PI * 180,
-      transition: this.state.transition,
+      strokeDashoffset: MAX_OFFSET - (this.state.seconds / 60) * MAX_OFFSET,
     };
 
     return (
       <div className={ styles.container }
         onTouchTap={ this.toggleTimer }>
-        <div className={ styles.minutes }>{ parseInt(this.state.seconds / 60, 10) }</div>
+        <div className={ styles.minutes }>{ Math.floor(this.state.seconds / 60) }</div>
         <svg className={ styles.seconds }>
           <circle
             className={ styles.track }
-            r="90"
+            r={ TIMER_RADIUS }
             cx="100"
             cy="100"
-            fill="transparent"
-            strokeDasharray={ MAX_OFFSET }
-            strokeDashoffset={ 0 }></circle>
+            fill="transparent"></circle>
           <circle
             className={ styles.progress }
             style={ inlineStyles }
-            r="90"
+            r={ TIMER_RADIUS }
             cx="100"
             cy="100"
             fill="transparent"
-            strokeDasharray={ MAX_OFFSET }
-            strokeDashoffset={ MAX_OFFSET }></circle>
+            strokeDasharray={ MAX_OFFSET }></circle>
         </svg>
       </div>
       );

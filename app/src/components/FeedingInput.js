@@ -1,4 +1,4 @@
-import React from 'react';
+import {h} from 'preact';
 
 import Timer from './Timer';
 import {addFeeding} from '../actions';
