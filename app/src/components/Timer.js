@@ -68,7 +68,7 @@ export default class Timer extends Component {
             cx="100"
             cy="100"
             fill="transparent"
-            strokeDasharray={ MAX_OFFSET }></circle>
+            stroke-dasharray={ MAX_OFFSET }></circle>
         </svg>
       </div>
       );
