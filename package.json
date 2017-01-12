@@ -4,7 +4,7 @@
   "description": "Breastfeeding app.",
   "keywords": [
     "breastfeeding",
-    "preact",
+    "react",
     "redux"
   ],
   "homepage": "http://github.com/notaurologist/breastfeeding-app",
@@ -35,14 +35,16 @@
   "dependencies": {
     "babel-polyfill": "^6.9.1",
     "material-ui": "^0.16.4",
-    "preact": "^7.1.0",
-    "preact-redux": "^1.2.0",
-    "preact-tap-event-plugin": "^0.1.2",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.2",
+    "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.5.2",
     "uuid": "^3.0.1"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
+		"babel-core": "^6.21.0",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.4",
     "babel-plugin-react-transform": "^2.0.2",
@@ -51,7 +53,7 @@
     "babel-plugin-transform-react-jsx": "^6.8.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.2.7",
     "babel-preset-env": "^1.0.2",
-		"babel-preset-react": "^6.5.0",
+    "babel-preset-react": "^6.5.0",
     "babel-preset-react-hmre": "^1.1.1",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.26.0",
@@ -61,7 +63,7 @@
     "esformatter-jsx": "^7.0.0",
     "eslint": "^3.0.1",
     "eslint-plugin-jsx-a11y": "^3.0.1",
-		"eslint-plugin-react": "^6.7.1",
+    "eslint-plugin-react": "^6.7.1",
     "express": "^4.13.4",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "faucet": "0.0.1",

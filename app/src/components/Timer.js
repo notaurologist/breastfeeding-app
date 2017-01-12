@@ -1,4 +1,4 @@
-import {h, Component} from 'preact';
+import React, {Component} from 'react';
 import styles from '../styles/timer.css';
 
 const TIMER_RADIUS = 90;
@@ -68,7 +68,7 @@ export default class Timer extends Component {
             cx="100"
             cy="100"
             fill="transparent"
-            stroke-dasharray={ MAX_OFFSET }></circle>
+            strokeDasharray={ MAX_OFFSET }></circle>
         </svg>
       </div>
       );
